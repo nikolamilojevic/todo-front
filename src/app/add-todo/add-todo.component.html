@@ -1,0 +1,12 @@
+<h3>
+  Add new todo:
+</h3>
+
+<form>
+  <div class="form-group">
+    <label for="todoDescription">Todo Description</label>
+    <br>
+    <input type="text" [(ngModel)]="newTodo.description" placeholder="description" name="description" />
+  </div>
+  <button (click)="add(newTodo)" type="submit" class="btn btn-primary">Add new todo</button>
+</form>
