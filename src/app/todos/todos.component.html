@@ -6,6 +6,7 @@
       <th scope="col">#</th>
       <th scope="col">Description</th>
       <th scope="col">Status</th>
+      <th scope="col">Priority</th>
       <th scope="col"></th>
       <th scope="col"></th>
     </tr>
@@ -17,11 +18,24 @@
       <td *ngIf="todo.editable">
         <input [(ngModel)]="todo.description" placeholder="description">
       </td>
-      <td>
+      <td *ngIf="!todo.editable">
+        {{ todo.status }}
+      </td>
+      <td *ngIf="todo.editable">
         <select [(ngModel)]="todo.status">
-          <option value="later">Later</option>
-          <option value="inprogress">In progress</option>
-          <option value="done">Done</option>
+          <option value="Later">Later</option>
+          <option value="In progress">In progress</option>
+          <option value="Done">Done</option>
+        </select>
+      </td>
+      <td *ngIf="!todo.editable">
+        {{ todo.priority }}
+      </td>
+      <td *ngIf="todo.editable">
+        <select [(ngModel)]="todo.priority">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
         </select>
       </td>
       <td>
@@ -29,16 +43,12 @@
       </td>
       <td>
         <button *ngIf="!todo.editable" (click)="edit(todo)" type="button" class="btn btn-warning">Edit</button>
-        <button *ngIf="todo.editable" (click)="edit(todo)" type="button" class="btn btn-success">Done editing</button>
+        <button *ngIf="todo.editable" (click)="save(todo)" type="button" class="btn btn-success">Save</button>
       </td>
     </tr>
   </tbody>
 </table>
 
-<app-add-todo></app-add-todo>
-
-<!-- <div>
-  <label>description:
-    <input [(ngModel)]="todo.description" placeholder="description">
-  </label>
-</div> -->
+<nav>
+  <button class="btn btn-info" routerLink="/add">Add new todo</button>
+</nav>

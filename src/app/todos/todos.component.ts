@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo';
-import { TODOS } from '../list-todos';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todos',
@@ -9,19 +9,34 @@ import { TODOS } from '../list-todos';
 })
 export class TodosComponent implements OnInit {
 
-  todos = TODOS;
+  todos: Todo[];
   
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
+    this.getTodos();
+  }
+
+  getTodos(): void {
+    this.todoService.getTodos()
+        .subscribe(todos => this.todos = todos);
   }
 
   edit(todo): void {
-    todo.editable = !todo.editable;
+    todo.editable = true;
+  }
+  save(todo): void {
+    this.todoService.updateTodo(todo)
+     .subscribe();
+    todo.editable = false;
   }
   delete(todo): void {
-    var index = this.todos.indexOf(todo);
-    this.todos.splice(index, 1);
+    var sure = confirm('Are you sure?');
+    if(sure) {
+      this.todos = this.todos.filter(t => t !== todo);
+      this.todoService.deleteTodo(todo)
+      .subscribe();
+    }
   }
 
 }
