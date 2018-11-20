@@ -21,11 +21,10 @@ export class TodosComponent implements OnInit {
   }
 
   edit(todo): void {
-    todo.editable = !todo.editable;
+    this.todoService.editTodo(todo)
   }
   delete(todo): void {
-    var index = this.todos.indexOf(todo);
-    this.todos.splice(index, 1);
+    this.todoService.deleteTodo(todo)
   }
 
 }

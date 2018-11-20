@@ -23,8 +23,7 @@ export class AddTodoComponent implements OnInit {
   }
 
   add(): void {
-    this.todo.id = this.todos[this.todos.length - 1].id + 1;
-    this.todos.push(this.todo)
+    this.todoService.addTodo(this.todo)
   }
 
 }
