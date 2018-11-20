@@ -8,5 +8,18 @@
     <br>
     <input type="text" [(ngModel)]="todo.description" placeholder="description" name="description" />
   </div>
-  <button (click)="add()" type="submit" class="btn btn-primary">Add new todo</button>
+  <div class="form-group">
+    <label for="priority">Todo Priority</label>
+    <br>
+    <select [(ngModel)]="todo.priority" name="priority">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+  </div>
+  <button (click)="add()" class="btn btn-info">Add todo</button>
 </form>
+
+<nav>
+  <button class="btn btn-info" routerLink="">Home</button>
+</nav>

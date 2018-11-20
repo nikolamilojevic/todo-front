@@ -1,37 +1,40 @@
 import { Injectable } from '@angular/core';
+import { Todo } from '../models/todo';
+import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
 
-  constructor() { }
+  private todosUrl = 'http://localhost:8000/api/todos';
 
-  todos = [
-    { id: 1, description: 'Make your bed', status: 'null', editable: false },
-    { id: 2, description: 'Make breakfast', status: 'null', editable: false },
-    { id: 3, description: 'Walk the dog', status: 'null', editable: false },
-    { id: 4, description: 'Buy bread', status: 'null', editable: false },
-    { id: 5, description: 'Buy eggs', status: 'null', editable: false },
-    { id: 6, description: 'Call landlord', status: 'null', editable: false },
-  ];
+  constructor(
+    private http: HttpClient,
+  ) { }
 
-  getTodos() {
-    return this.todos;
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(this.todosUrl)
   }
 
-  addTodo(todo) {
-    todo.id = this.todos[this.todos.length - 1].id + 1;
-    this.todos.push(todo);
+  addTodo(todo: Todo): Observable<Todo> {
+    return this.http.post<Todo>(this.todosUrl, todo, httpOptions)
   }
 
-  editTodo(todo) {
-    todo.editable = !todo.editable;
+  deleteTodo (todo: Todo): Observable<Todo> {
+    const url = `${this.todosUrl}/${todo.id}`;
+    return this.http.delete<Todo>(url, httpOptions)
   }
 
-  deleteTodo(todo) {
-    var index = this.todos.indexOf(todo);
-    this.todos.splice(index, 1);
+  updateTodo (todo: Todo): Observable<Todo> {
+    const url = `${this.todosUrl}/${todo.id}`;
+    return this.http.put<Todo>(url, todo, httpOptions)
   }
 
 }
+
