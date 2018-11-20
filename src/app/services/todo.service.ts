@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Todo } from './todo';
+import { Todo } from '../models/todo';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -37,3 +37,4 @@ export class TodoService {
   }
 
 }
+

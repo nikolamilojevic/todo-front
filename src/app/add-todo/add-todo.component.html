@@ -4,20 +4,20 @@
 
 <form>
   <div class="form-group">
-    <label for="todoDescription">Todo Description</label>
+    <label for="description">Todo Description</label>
     <br>
-    <input type="text" [(ngModel)]="newTodo.description" placeholder="description" name="description" />
+    <input type="text" [(ngModel)]="todo.description" placeholder="description" name="description" />
   </div>
   <div class="form-group">
-    <label for="todoPriority">Todo Priority</label>
+    <label for="priority">Todo Priority</label>
     <br>
-    <select [(ngModel)]="newTodo.priority" name="priority">
+    <select [(ngModel)]="todo.priority" name="priority">
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
   </div>
-  <button (click)="add(newTodo)" class="btn btn-info">Add todo</button>
+  <button (click)="add()" class="btn btn-info">Add todo</button>
 </form>
 
 <nav>

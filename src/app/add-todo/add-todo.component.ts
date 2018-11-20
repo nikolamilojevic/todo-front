@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TodoService } from '../todo.service';
+import { TodoService } from '../services/todo.service';
+import { Todo } from '../models/todo';
 
 @Component({
   selector: 'app-add-todo',
@@ -9,7 +10,7 @@ import { TodoService } from '../todo.service';
 })
 export class AddTodoComponent implements OnInit {
 
-  newTodo = {};
+  todo = new Todo;
 
   constructor(
     private todoService: TodoService,
@@ -19,11 +20,11 @@ export class AddTodoComponent implements OnInit {
   ngOnInit() {
   }
 
-  add(newTodo): void {
-    if(!newTodo.status) {
-      newTodo.status = 'To be scheduled'
+  add(): void {
+    if(!this.todo.status) {
+      this.todo.status = 'To be scheduled'
     }
-    this.todoService.addTodo( newTodo )
+    this.todoService.addTodo( this.todo )
       .subscribe(()=> {
         this.router.navigateByUrl('');
       });
