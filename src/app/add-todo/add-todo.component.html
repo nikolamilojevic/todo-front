@@ -7,6 +7,7 @@
     <label for="description">Todo Description</label>
     <br>
     <input type="text" [(ngModel)]="todo.description" placeholder="description" name="description" />
+    <p>{{ errorMsg.description }}</p>
   </div>
   <div class="form-group">
     <label for="priority">Todo Priority</label>
@@ -16,6 +17,7 @@
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
+    <p>{{ errorMsg.priority }}</p>
   </div>
   <button (click)="add()" class="btn btn-info">Add todo</button>
 </form>

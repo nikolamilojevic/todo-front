@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo';
-import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { throwError as ObservableThrowError, Observable, of } from 'rxjs';  
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,6 +25,7 @@ export class TodoService {
 
   addTodo(todo: Todo): Observable<Todo> {
     return this.http.post<Todo>(this.todosUrl, todo, httpOptions)
+      .pipe(catchError(this.errorHandler))
   }
 
   deleteTodo (todo: Todo): Observable<Todo> {
@@ -34,6 +36,10 @@ export class TodoService {
   updateTodo (todo: Todo): Observable<Todo> {
     const url = `${this.todosUrl}/${todo.id}`;
     return this.http.put<Todo>(url, todo, httpOptions)
+  }
+
+  errorHandler(error: HttpErrorResponse) {
+    return ObservableThrowError(error || 'Server error')
   }
 
 }
