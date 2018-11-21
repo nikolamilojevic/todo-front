@@ -13,7 +13,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  public isAuthenticated = !!localStorage.getItem('token');
+  // public isAuthenticated = !!localStorage.getItem('token');
 
   private authUrl = 'http://localhost:8000/api/auth/';
 
