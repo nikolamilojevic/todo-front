@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/todo';
 import { TodoService } from '../services/todo.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-todos',
@@ -11,7 +12,10 @@ export class TodosComponent implements OnInit {
 
   todos: Todo[];
   
-  constructor(private todoService: TodoService) { }
+  constructor(
+    private todoService: TodoService,
+    private userService: UserService) 
+    { }
 
   ngOnInit() {
     this.getTodos();
@@ -38,5 +42,16 @@ export class TodosComponent implements OnInit {
       .subscribe();
     }
   }
+  logout(): void {
+    this.userService.logout()
+    // this.todoService.updateTodo(todo)
+    //  .subscribe();
+  }
+  // logout(): void {
+  //   this.userService.logout()
+  //    .subscribe(()=> {
+  //     localStorage.removeItem('token')
+  //   });
+  // }
 
 }

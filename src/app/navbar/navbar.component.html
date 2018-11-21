@@ -1,0 +1,7 @@
+<nav>
+  <a routerLink="">Home</a>
+  <a routerLink="/add">Add Todo</a>
+  <a *ngIf="!authService.isAuthenticated()" routerLink="/register">Register</a>
+  <a *ngIf="!authService.isAuthenticated()"routerLink="/login">Login</a>
+  <a *ngIf="authService.isAuthenticated()" (click)="logout()" class="link">Logout</a>
+</nav>
