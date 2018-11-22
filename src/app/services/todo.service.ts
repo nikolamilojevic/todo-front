@@ -23,6 +23,11 @@ export class TodoService {
     return this.http.get<Todo[]>(this.todosUrl)
   }
 
+  getId(): Observable<Todo[]> {
+    var id = localStorage.getItem('user_id');
+    return this.http.get<Todo[]>(`http://localhost:8000/api/authors/${id}`)
+  }
+
   addTodo(todo: Todo): Observable<Todo> {
     return this.http.post<Todo>(this.todosUrl, todo, httpOptions)
       .pipe(catchError(this.errorHandler))

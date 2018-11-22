@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 export class TodosComponent implements OnInit {
 
   todos: Todo[];
+  username = localStorage.getItem('username')
   
   constructor(
     private todoService: TodoService,
@@ -18,11 +19,16 @@ export class TodosComponent implements OnInit {
     { }
 
   ngOnInit() {
-    this.getTodos();
+    this.getId();
   }
 
   getTodos(): void {
     this.todoService.getTodos()
+        .subscribe(todos => this.todos = todos);
+  }
+
+  getId(): void {
+    this.todoService.getId()
         .subscribe(todos => this.todos = todos);
   }
 

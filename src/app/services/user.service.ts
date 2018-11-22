@@ -33,6 +33,7 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token')
+    localStorage.removeItem('user_id')
   }
 
   errorHandler(error: HttpErrorResponse) {

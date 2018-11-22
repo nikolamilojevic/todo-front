@@ -22,13 +22,14 @@ export class AddTodoComponent implements OnInit {
   }
 
   add(): void {
+    this.todo.user_id = parseInt(localStorage.getItem('user_id'));
     if(!this.todo.status) {
       this.todo.status = 'To be scheduled'
     }
     this.todoService.addTodo( this.todo )
       .subscribe(
         ()=> {
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('/todos');
         },
         error => this.errorMsg = error.error.errors);
   }

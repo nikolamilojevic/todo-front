@@ -4,4 +4,5 @@ export class Todo {
     status: string;
     priority: number;
     editable: boolean;
+    user_id: number;
   }

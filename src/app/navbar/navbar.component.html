@@ -1,5 +1,5 @@
 <nav>
-  <a *ngIf="authService.isAuthenticated()" routerLink="">Home</a>
+  <a *ngIf="authService.isAuthenticated()" routerLink="/todos">My Todos</a>
   <a *ngIf="authService.isAuthenticated()" routerLink="/add">Add Todo</a>
   <a *ngIf="guestService.isGuest()" routerLink="/register">Register</a>
   <a *ngIf="guestService.isGuest()"routerLink="/login">Login</a>
