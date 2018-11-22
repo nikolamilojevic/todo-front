@@ -11,6 +11,7 @@ import { Todo } from '../models/todo';
 export class AddTodoComponent implements OnInit {
 
   todo = new Todo;
+  errorMsg = {};
 
   constructor(
     private todoService: TodoService,
@@ -25,9 +26,11 @@ export class AddTodoComponent implements OnInit {
       this.todo.status = 'To be scheduled'
     }
     this.todoService.addTodo( this.todo )
-      .subscribe(()=> {
-        this.router.navigateByUrl('');
-      });
+      .subscribe(
+        ()=> {
+          this.router.navigateByUrl('');
+        },
+        error => this.errorMsg = error.error.errors);
   }
 
 }
