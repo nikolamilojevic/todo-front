@@ -31,27 +31,25 @@ export class TodosComponent implements OnInit {
   }
   save(todo): void {
     this.todoService.updateTodo(todo)
-     .subscribe();
-    todo.editable = false;
+     .subscribe(() => {
+        todo.editable = false;
+     }
+    );
+
   }
+
   delete(todo): void {
     var sure = confirm('Are you sure?');
     if(sure) {
-      this.todos = this.todos.filter(t => t !== todo);
-      this.todoService.deleteTodo(todo)
-      .subscribe();
-    }
+    this.todoService.deleteTodo(todo)
+      .subscribe(() => {
+        this.todos = this.todos.filter(t => t !== todo);
+      }   
+    );
   }
+}
+
   logout(): void {
     this.userService.logout()
-    // this.todoService.updateTodo(todo)
-    //  .subscribe();
   }
-  // logout(): void {
-  //   this.userService.logout()
-  //    .subscribe(()=> {
-  //     localStorage.removeItem('token')
-  //   });
-  // }
-
 }

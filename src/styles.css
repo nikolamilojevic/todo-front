@@ -37,7 +37,7 @@ nav {
     margin: 0 auto;
     width: 50%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 3rem;
     text-align: center;
 }
