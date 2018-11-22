@@ -44,14 +44,6 @@ export class TodosComponent implements OnInit {
   }
   logout(): void {
     this.userService.logout()
-    // this.todoService.updateTodo(todo)
-    //  .subscribe();
   }
-  // logout(): void {
-  //   this.userService.logout()
-  //    .subscribe(()=> {
-  //     localStorage.removeItem('token')
-  //   });
-  // }
 
 }
